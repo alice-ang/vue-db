@@ -3,34 +3,34 @@ const mongodb = require('mongodb');
 const router = express.Router();
 
 
-// GET users
+// GET tasks
 router.get('/', async (req, res) => {
-    const users = await loadUserCollection();
-    res.send(await users.find({}).toArray());
+    const tasks = await loadTaskCollection();
+    res.send(await tasks.find({}).toArray());
   });
 
 
-// ADD users
+// ADD task
 router.post('/', async (req, res)=>{
-    const users = await loadUserCollection();
-    await users.insertOne({
-        first_name: req.body.first_name,
-        last_name: req.body.last_name,
+    const tasks = await loadTaskCollection();
+    await tasks.insertOne({
+        text: req.body.text,
+        priority: req.body.priority,
+        status: req.body.status,
         createdAt: new Date()
     });
     res.status(201).send();
 });
 
-
-// Delete user
+// Delete task
 router.delete('/:id', async (req, res) => {
-    const users = await loadUserCollection();
-    await users.deleteOne({_id: new mongodb.ObjectID(req.params.id)});
+    const tasks = await loadTaskCollection();
+    await tasks.deleteOne({_id: new mongodb.ObjectID(req.params.id)});
 
     res.status(200).send();
 });
 
-async function loadUserCollection() {
+async function loadTaskCollection() {
     const client = await mongodb.MongoClient.connect(
       'mongodb+srv://admin:8oUk9TBD@cluster0-xmesc.mongodb.net/test?retryWrites=true&w=majority',
       {
@@ -39,7 +39,7 @@ async function loadUserCollection() {
       }
     );
   
-    return client.db('vue_expres').collection('users');
+    return client.db('vue_express').collection('tasks');
   }
 
 module.exports = router;

@@ -1,18 +1,18 @@
 import axios from 'axios';
 
 
-const url = 'api/users/';
+const url = 'api/tasks/';
 
-class UserService {
-    // get User
-    static getUsers() {
+class TaskService {
+    // get Task
+    static getTask() {
         return new Promise ((resolve,reject) => {
             axios.get(url).then((res) => {
                 const data = res.data;
                 resolve(
-                    data.map(user => ({
-                        ...user,
-                        createdAt: new Date(user.createdAt)
+                    data.map(task => ({
+                        ...task,
+                        createdAt: new Date(task.createdAt)
                     }))
                 );
             })
@@ -22,18 +22,19 @@ class UserService {
             
         });
     }
-    // Create User
-    static insertUser(first_name, last_name){
+    // Create Task
+    static insertTask(text, priority, status){
         return axios.post(url, {
-            first_name: first_name,
-            last_name: last_name
+            text,
+            priority,
+            status
         });
     }
-    // Delete User
-    static deleteUser(id){
+    // Delete Task
+    static deleteTask(id){
         return axios.delete(`${url}${id}`);
 
     }
 }
 
-export default UserService;
+export default TaskService;

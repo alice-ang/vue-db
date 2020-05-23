@@ -9,8 +9,10 @@ app.use(bodyParser.json());
 app.use(cors());
 
 const users = require('./routes/api/users');
+const tasks = require('./routes/api/tasks');
 
 app.use('/api/users', users);
+app.use('/api/tasks', tasks);
 
 const port = process.env.PORT || 5000;
 

@@ -1,16 +1,18 @@
 <template>
   <div>
     <TableComponent />
+    <TaskComponent/>
   </div>
 </template>
 
 <script>
 import TableComponent from './components/TableComponent.vue'
+import TaskComponent from './components/TaskComponent.vue'
 
 export default {
   name: 'App',
   components: {
-    TableComponent
+    TableComponent, TaskComponent
   }
 }
 </script>
