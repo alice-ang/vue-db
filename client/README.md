@@ -1,4 +1,4 @@
-# client
+# Vue Express/MongoDB App
 
 ## Project setup
 ```
