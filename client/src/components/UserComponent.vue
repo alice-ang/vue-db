@@ -13,7 +13,7 @@
       <table>
             <tr>
                 <th>First Name</th>
-                <th>Last Name</th>
+                <th colspan="2">Last Name</th>
             </tr>
             <tr class="user" v-for="(user, index) in users"
                 v-bind:item="user"
@@ -21,6 +21,7 @@
                 v-bind:key="user._id">
             <td>{{user.first_name}}</td>
             <td>{{user.last_name}}</td>
+            <td v-on:click="deleteUser(user._id)" title="Click to delete user" id="delete">x</td>
             </tr>
       </table>
   </div>
@@ -52,7 +53,7 @@ export default {
       this.users = await UserService.getUsers();
     },
     deleteUser: async function (id){
-  
+
         if (confirm("Are you sure you want to delete user?")) {
           await UserService.deleteUser(id);
          this.users = await UserService.getUsers();
@@ -70,9 +71,13 @@ export default {
 <style >
 .table {
   margin: auto;
-  max-width: 800px;
+  max-width: 800px; 
 }
 
+ #delete:hover {
+   text-decoration: underline;
+   font-weight: bold;
+ }
 .create-user {
   border: 1px solid #c5c5c5;
   padding: 1rem;
