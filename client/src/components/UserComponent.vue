@@ -29,7 +29,7 @@
 <script>
 import UserService from '../UserService';
 export default {
-  name: 'TableComponent',
+  name: 'UserComponent',
   data(){
     return {
       users: [],
@@ -68,6 +68,10 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style >
+.table {
+  margin: auto;
+  max-width: 800px;
+}
 
 .create-user {
   border: 1px solid #c5c5c5;

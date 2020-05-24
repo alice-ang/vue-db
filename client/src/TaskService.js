@@ -23,9 +23,10 @@ class TaskService {
         });
     }
     // Create Task
-    static insertTask(text, priority, status){
+    static insertTask(text, description, priority, status){
         return axios.post(url, {
             text,
+            description,
             priority,
             status
         });

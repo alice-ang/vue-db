@@ -15,6 +15,7 @@ router.post('/', async (req, res)=>{
     const tasks = await loadTaskCollection();
     await tasks.insertOne({
         text: req.body.text,
+        description: req.body.description,
         priority: req.body.priority,
         status: req.body.status,
         createdAt: new Date()
