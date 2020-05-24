@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <router-link to="/">Go Back</router-link>
+    <router-link to="/" id="link">Go Back</router-link>
     <h1>Tasks</h1>
     <div class="create-task">
       <label for="create-task">Enter Task Information: </label>
@@ -91,9 +91,11 @@ export default {
   },
 }
 </script>
-
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+#link {
+  float: left;
+}
 #prio, .task, .create-task button , #text, textarea{
   border-radius: 5px;
   width: 40%;
