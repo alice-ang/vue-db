@@ -17,7 +17,7 @@ export default {
     }
 }
 </script>
-<style >
+<style lang="scss">
 /* CSS */
 .nav {
     list-style-type: none;
@@ -28,8 +28,10 @@ export default {
 ul li {
     display: inline-block;
     padding: 10px;
-}
-li:hover {
+
+    &::hover {
     font-weight: bold;
+    }
 }
+
 </style>

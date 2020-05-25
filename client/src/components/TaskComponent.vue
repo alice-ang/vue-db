@@ -1,38 +1,40 @@
 <template>
   <div class="container">
-    <router-link to="/" id="link">Go Back</router-link>
-    <h1>Tasks</h1>
-    <div class="create-task">
-      <label for="create-task">Enter Task Information: </label>
-      <div>
-      <input type="text" name="text" id="text" v-model="text" placeholder="Name of task here">
+    <div class="task-form">
+      <router-link to="/" id="link">Go Back</router-link>
+      <h1>Tasks</h1>
+      <div class="create-task">
+        <label for="create-task">Enter Task Information: </label>
+        <div>
+        <input type="text" name="text" id="text" v-model="text" placeholder="Name of task here">
+        </div>
+        <div>
+          <label for="description">Description:</label>
+          <br>
+          <textarea id="description" rows="4" v-model="description" placeholder="Describe task here">  </textarea>
+        </div>
+        <div>
+          <select name="priority" id="prio" v-model="priority" required> 
+            <option value="low">Low</option>
+            <option value="medium" selected>Medium</option>
+            <option value="high">High</option>
+          </select>
+        </div>
+        <div class="radio-btns">
+            <label for="completed">Completed</label>
+            <input type="radio" id="completed" value="completed" v-model="status">
+            <label for="incompleted">Incompleted</label>
+            <input type="radio" id="incompleted" value="incompleted" v-model="status">   
+        </div>
+        <button v-on:click="createTask">Create Task</button>
       </div>
-      <div>
-        <label for="description">Description:</label>
-        <br>
-        <textarea id="description" rows="4" v-model="description" placeholder="Describe task here">  </textarea>
-      </div>
-      <div>
-        <select name="priority" id="prio" v-model="priority" required> 
-          <option value="low">Low</option>
-          <option value="medium" selected>Medium</option>
-          <option value="high">High</option>
-        </select>
-      </div>
-      <div class="radio-btns">
-          <label for="completed">Completed</label>
-          <input type="radio" id="completed" value="completed" v-model="status">
-          <label for="incompleted">Incompleted</label>
-          <input type="radio" id="incompleted" value="incompleted" v-model="status">   
-      </div>
-      <button v-on:click="createTask">Create Task</button>
+            <hr>
     </div>
 
 
-    <hr>
     <!--Show all tasks-->
-    <p class="error" v-if="error">{{error}}</p>
     <div class="task-container">
+              <p class="error" v-if="error">{{error}}</p>
       <div class="task" 
       v-for="(task, index) in tasks"
       v-bind:item="task"
@@ -94,57 +96,79 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
 #link {
+  padding: 1em;
   float: left;
 }
-#prio, .task, .create-task button , #text, textarea{
-  border-radius: 5px;
-  width: 40%;
-}
+
 .container {
-  max-width: 800px;
-  margin: auto;
+  display: grid;
+  grid-gap: 20px;
+  grid-template-rows: 400px 1fr;  
+  grid-template-areas: 
+  "top"
+  "bottom";
+
+.task-form {
+  grid-area: top;
+    hr {
+      width: 90%;
+    }
+    .create-task {
+      width: 100%;
+      padding: 1rem;
+
+      button {
+      padding: 10px;
+      }
+      input {
+      padding: 10px;
+      margin: 5px;
+      }
+      div{
+      margin-top: 10px;
+      }
+      .radio-btns input {
+        padding: 10px;
+        margin: 5px;
+      }
+    }
+  }
 }
 
-.create-task {
-    border: 1px solid #c5c5c5;
-  padding: 1rem;
+.task-container{
+  grid-area: bottom;
+  display: grid;
+  grid-template-columns:repeat(auto-fit, minmax(300px ,1fr));
+  grid-gap: 20px;
+  padding: 1em;
 
-  button {
-  padding: 10px;
+  .task{
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    transition: 0.3s;
+    justify-self: center;
+    width: 300px;
+    height: 300px;
+    overflow: auto;
+    padding: 5px;
+    background: #fff5d8;
+    .text-container {
+      display: flex;
+      justify-content: space-around;
+    }
+    .date-text {
+      font-weight: 100;
+      font-size: 10px;
+    }
+    span{
+      float: right;
+      font-size: 12px;
+    }
+    &:hover{
+      box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+    }
   }
-  input {
-  padding: 10px;
-  margin: 5px;
-  }
-  div{
-  margin-top: 10px;
-  }
-  
 }
 
-.radio-btns input {
-  padding: 10px;
-  margin: 5px;
-}
-.text-container{
-  display: flex;
-  justify-content: space-around;
-}
-.task{
-  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
-  transition: 0.3s;
-  margin: auto;
-  padding: 10px;
-  margin-top: 20px;
-
-  span{
-    float: right;
-    font-size: 12px;
-  }
-  &:hover{
-    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
-  }
-}
 
 span:hover, button:hover{
   font-weight: bold;
@@ -152,8 +176,5 @@ span:hover, button:hover{
 }
 
 
-.date-text {
-  font-weight: 100;
-  font-size: 10px;
-}
+
 </style>
