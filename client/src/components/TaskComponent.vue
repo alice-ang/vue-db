@@ -92,7 +92,7 @@ export default {
 }
 </script>
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped>
+<style scoped lang="scss">
 #link {
   float: left;
 }
@@ -104,20 +104,24 @@ export default {
   max-width: 800px;
   margin: auto;
 }
+
 .create-task {
-  border: 1px solid #c5c5c5;
+    border: 1px solid #c5c5c5;
   padding: 1rem;
-}
-.create-task button {
+
+  button {
   padding: 10px;
-}
-.create-task input {
+  }
+  input {
   padding: 10px;
   margin: 5px;
-}
-.create-task div {
+  }
+  div{
   margin-top: 10px;
+  }
+  
 }
+
 .radio-btns input {
   padding: 10px;
   margin: 5px;
@@ -132,19 +136,21 @@ export default {
   margin: auto;
   padding: 10px;
   margin-top: 20px;
+
+  span{
+    float: right;
+    font-size: 12px;
+  }
+  &:hover{
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+  }
 }
 
-.task span{
-  float: right;
-  font-size: 12px;
-}
-.task span:hover, button:hover{
+span:hover, button:hover{
   font-weight: bold;
   cursor: pointer;
 }
-.task:hover{
-  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
-}
+
 
 .date-text {
   font-weight: 100;

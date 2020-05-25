@@ -1,5 +1,5 @@
 <template>
-  <div class="table">
+  <div class="user-container">
       <h1>Users</h1>
     <div class="create-user">
       <label for="create-user">Enter Name of User: </label>
@@ -68,41 +68,46 @@ export default {
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style >
-.table {
-  margin: auto;
-  max-width: 800px; 
-}
+<style lang="scss">
 
  #delete:hover {
    text-decoration: underline;
    font-weight: bold;
  }
-.create-user {
-  border: 1px solid #c5c5c5;
-  padding: 1rem;
-}
-.create-user button {
-  width: 40%;
-  padding: 10px;
-}
-.create-user input {
-  padding: 10px;
-  margin: 5px;
-}
-table {
+
+.user-container {
+  margin: auto;
+  max-width: 800px; 
+  .create-user {
+    border: 1px solid #c5c5c5;
+    padding: 1rem;
+
+    button {
+      width: 40%;
+      padding: 10px;
+    }
+    input {
+      padding: 10px;
+      margin: 5px;
+    }
+  }
+
+  table {
   font-family: arial, sans-serif;
   border-collapse: collapse;
   width: 100%;
-}
-
-td, th {
+  td, th {
   border: 1px solid #dddddd;
   text-align: left;
   padding: 8px;
+  }
+
+  tr:nth-child(even) {
+    background-color: #dddddd;
+  }
+}
 }
 
-tr:nth-child(even) {
-  background-color: #dddddd;
-}
+
+
 </style>
