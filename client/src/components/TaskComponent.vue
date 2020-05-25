@@ -1,8 +1,6 @@
 <template>
   <div class="container">
     <div class="task-form">
-      <router-link to="/" id="link">Go Back</router-link>
-      <h1>Tasks</h1>
       <div class="create-task">
         <label for="create-task">Enter Task Information: </label>
         <div>
@@ -95,41 +93,47 @@ export default {
 </script>
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
-#link {
-  padding: 1em;
-  float: left;
-}
 
+@mixin formStyle(){
+  padding: 10px;
+  margin: 5px;
+  width: 90%;
+  border-radius: 5px;
+}
+@mixin flex($content-dircetion){
+    display: flex;
+    justify-content: $content-dircetion;
+}
 .container {
   display: grid;
   grid-gap: 20px;
-  grid-template-rows: 400px 1fr;  
+  grid-template-rows: 500px 1fr;  
   grid-template-areas: 
   "top"
   "bottom";
 
 .task-form {
   grid-area: top;
+  margin-top: 60px;
     hr {
-      width: 90%;
+      width: 40%;
     }
     .create-task {
-      width: 100%;
+      margin: auto;
+      border: 1px solid #c5c5c5;
+      width: 30%;
       padding: 1rem;
+      input, button , #description, #prio, .radio-btns {
+      @include formStyle();
 
-      button {
-      padding: 10px;
       }
-      input {
-      padding: 10px;
-      margin: 5px;
+      .radio-btns {
+        @include flex(center);
+        width: 50%;
+        margin: auto;
       }
       div{
       margin-top: 10px;
-      }
-      .radio-btns input {
-        padding: 10px;
-        margin: 5px;
       }
     }
   }
@@ -152,8 +156,7 @@ export default {
     padding: 5px;
     background: #fff5d8;
     .text-container {
-      display: flex;
-      justify-content: space-around;
+      @include flex(space-around);
     }
     .date-text {
       font-weight: 100;
@@ -165,6 +168,7 @@ export default {
     }
     &:hover{
       box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+      cursor: pointer;
     }
   }
 }
